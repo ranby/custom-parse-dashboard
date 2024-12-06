@@ -1981,6 +1981,7 @@ class Browser extends DashboardView {
             info.targetClass = targetClass;
           }
           columns[name] = info;
+          columns[name].customInfo = this.context.deprecationInfo?.[className]?.[name];
         });
 
         let count;

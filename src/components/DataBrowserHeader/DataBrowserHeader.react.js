@@ -64,6 +64,7 @@ class DataBrowserHeader extends React.Component {
       style,
       isDragging,
       isOver,
+      customInfo,
     } = this.props;
     const classes = [styles.header, baseStyles.unselectable];
     if (order) {
@@ -80,6 +81,7 @@ class DataBrowserHeader extends React.Component {
         <div className={classes.join(' ')} style={style}>
           <div className={styles.name}>{name}</div>
           <div className={styles.type}>{targetClass ? `${type} <${targetClass}>` : type}</div>
+          { customInfo && <div className={styles.deprecated}>{customInfo}</div> }
         </div>
       )
     );
