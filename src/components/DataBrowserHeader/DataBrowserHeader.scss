@@ -10,13 +10,20 @@
 .header {
   @include MonospaceFont;
   position: relative;
-  display: block;
+  display: flex;
   white-space: nowrap;
   overflow: hidden;
   height: 30px;
   padding: 4px 6px 4px 2px;
   cursor: pointer;
   border-left: 4px solid transparent;
+  align-items: center;
+}
+
+.info {
+  fill: #e2e248;
+  flex-shrink: 0;
+  margin-right: 8px;
 }
 
 .name {
@@ -29,6 +36,7 @@
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 0;
 }
 
 .type {

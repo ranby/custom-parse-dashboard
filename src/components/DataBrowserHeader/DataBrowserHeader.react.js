@@ -10,6 +10,8 @@ import React from 'react';
 import styles from 'components/DataBrowserHeader/DataBrowserHeader.scss';
 import baseStyles from 'stylesheets/base.scss';
 import { DragSource, DropTarget } from 'react-dnd';
+import Icon from '../Icon/Icon.react';
+import ShowCustomInfoDialog from '../../dashboard/Data/Browser/ShowCustomInfoDialog.rect';
 
 const Types = {
   DATA_BROWSER_HEADER: 'dataBrowserHeader',
@@ -53,6 +55,14 @@ const dataBrowserHeaderSource = {
   isDragging: monitor.isDragging(),
 }))
 class DataBrowserHeader extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      customInfoDialogOpen: false,
+    }
+  }
+
   render() {
     const {
       connectDragSource,
@@ -76,15 +86,20 @@ class DataBrowserHeader extends React.Component {
     if (isDragging) {
       classes.push(styles.dragging);
     }
-    return connectDragSource(
-      connectDropTarget(
-        <div className={classes.join(' ')} style={style}>
-          <div className={styles.name}>{name}</div>
-          <div className={styles.type}>{targetClass ? `${type} <${targetClass}>` : type}</div>
-          { customInfo && <div className={styles.deprecated}>{customInfo}</div> }
-        </div>
-      )
-    );
+    return <>
+      { connectDragSource(
+        connectDropTarget(
+          <div className={classes.join(' ')} style={style}>
+            { customInfo && <div className={styles.info} onClick={() => this.setState({customInfoDialogOpen: true})}>
+              <Icon name='question-solid' width={16} height={16} />
+            </div> }
+            <div className={styles.name}>{name}</div>
+            <div className={styles.type}>{targetClass ? `${type} <${targetClass}>` : type}</div>
+          </div>
+        )
+      )}
+      { this.state.customInfoDialogOpen && <ShowCustomInfoDialog contentText={customInfo} onConfirm={() => this.setState({customInfoDialogOpen: false})} /> }
+    </>;
   }
 }
 
