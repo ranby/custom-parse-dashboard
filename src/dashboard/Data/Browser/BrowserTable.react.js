@@ -152,6 +152,7 @@ export default class BrowserTable extends React.Component {
       visible,
       preventSort,
       required,
+      customInfo: this.props.columns[name].customInfo,
     }));
     let editor = null;
     let table = <div ref={this.tableRef} />;

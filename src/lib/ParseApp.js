@@ -49,7 +49,8 @@ export default class ParseApp {
     scripts,
     classPreference,
     enableSecurityChecks,
-    cloudConfigHistoryLimit
+    cloudConfigHistoryLimit,
+    deprecationInfo
   }) {
     this.name = appName;
     this.createdAt = created_at ? new Date(created_at) : new Date();
@@ -79,6 +80,8 @@ export default class ParseApp {
     this.scripts = scripts;
     this.enableSecurityChecks = !!enableSecurityChecks;
     this.cloudConfigHistoryLimit = cloudConfigHistoryLimit;
+    this.deprecationInfo = deprecationInfo;
+    console.log({ deprecationInfo });
 
     if (!supportedPushLocales) {
       console.warn(

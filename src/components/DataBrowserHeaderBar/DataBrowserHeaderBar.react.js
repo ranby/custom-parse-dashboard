@@ -25,7 +25,7 @@ export default class DataBrowserHeaderBar extends React.Component {
       selected,
       isDataLoaded,
       setSelectedObjectId,
-      setCurrent
+      setCurrent,
     } = this.props;
     const elements = [
       <div key="check" className={[styles.wrap, styles.check].join(' ')}>
@@ -35,7 +35,7 @@ export default class DataBrowserHeaderBar extends React.Component {
       </div>,
     ];
 
-    headers.forEach(({ width, name, type, targetClass, order, visible, preventSort }, i) => {
+    headers.forEach(({ width, name, type, targetClass, order, visible, preventSort, customInfo }, i) => {
       if (!visible) {
         return;
       }
@@ -71,6 +71,7 @@ export default class DataBrowserHeaderBar extends React.Component {
             order={order}
             index={i}
             moveDataBrowserHeader={this.props.handleDragDrop}
+            customInfo={customInfo}
           />
         </div>
       );
